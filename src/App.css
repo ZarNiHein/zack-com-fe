@@ -7,6 +7,14 @@
   pointer-events: none;
 }
 
+.animation {
+  border-width: thin;
+}
+
+.animation:hover {
+  border-width: thick;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
