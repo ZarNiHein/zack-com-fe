@@ -41,9 +41,11 @@ class Home extends Component {
         <Row className="justify-content-md-center">
           {this.state.productList.map(product => {
             return (
-              <Col className="my-2" key={product.productId} xs={12} sm={6} md={4} lg={3}>
-                <Card className="animation m-auto" style={{ borderRadius: "5%", width: '17rem' }} onClick={() => this.handleClick(product.productId)}>
-                  <Card.Img variant="top" src={product.imgUrl} style={{ padding: "0.3rem", borderRadius: "5%", height: "19rem" }} />
+              <Col className="my-3" key={product.productId} xs={12} sm={6} md={4} lg={3}>
+                <Card className="cardStyle m-auto shadow" onClick={() => this.handleClick(product.productId)}>
+                  <div className="imgDiv">
+                    <Card.Img variant="top" src={product.imgUrl} alt={product.title} className="imageStyle" />
+                  </div>
                   <Card.Body style={{ textAlign: "start" }}>
                     <Card.Title>{product.title}</Card.Title>
                     <Card.Text>${product.price}</Card.Text>

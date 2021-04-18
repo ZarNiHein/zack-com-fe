@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: rgb(240, 240, 240);
 }
 
 .App-logo {
@@ -7,11 +8,15 @@
   pointer-events: none;
 }
 
-.animation {
+.cardStyle {
+  background-color: rgb(215, 231, 245) !important;
+  border-radius: 5% !important;
+  width: 17rem;
   border-width: thin;
+  overflow: hidden;
 }
 
-.animation:hover {
+.cardStyle:hover {
   border-width: thick;
 }
 
@@ -43,4 +48,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.imgDiv {
+  overflow: hidden;
+}
+
+.imageStyle {
+  padding: 0.3rem;
+  border-radius: 5%;
+  height: 19rem !important;
+  transition: transform 0.5s ease;
+}
+
+.imageStyle:hover {
+  transform: scale(1.3);
 }

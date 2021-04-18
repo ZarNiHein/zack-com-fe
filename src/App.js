@@ -81,7 +81,7 @@ class App extends Component {
                 </Nav>) :
                 (<Nav className="ml-auto">
                   <Nav.Link>
-                    <FontAwesomeIcon icon={'people-carry'} /> Zar Ni
+                    <FontAwesomeIcon icon={'people-carry'} /> User
                 </Nav.Link>
                   <Nav.Link eventKey={2} onClick={this.handleSignOut}>
                     Sign Out
