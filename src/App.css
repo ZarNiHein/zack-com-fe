@@ -8,6 +8,30 @@
   pointer-events: none;
 }
 
+.bgStyle {
+  background-image: url("./Images/Z-Logo.png");
+  background-color: #282c34;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover !important;
+  height: 100%;
+}
+
+.quoteStyle {
+  word-spacing: 10vw;
+  margin-top: 300px;
+}
+
+@media (max-width: 768px) {
+  .bgStyle {
+    background-size: contain !important;
+  }
+  .quoteStyle {
+    margin-top: 200px !important;
+    word-spacing: 0vw !important;
+  }
+}
+
 .cardStyle {
   background-color: rgb(215, 231, 245) !important;
   border-radius: 5% !important;

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { API } from 'aws-amplify';
-import ZLogo from '../Images/Z-Logo.png';
 
 class Home extends Component {
 
@@ -31,9 +30,11 @@ class Home extends Component {
     console.log(this.state.productList);
     return (
       <Container fluid>
-        <Row className="justify-content-md-center" style={{ backgroundImage: `url(${ZLogo})`, backgroundPosition: "center", backgroundRepeat: 'no-repeat', backgroundSize: "cover", height: "100%" }}>
-          <Col><h1 className="text-white py-5">Welcome to "ZACK-COM"</h1>
-            <h1 className="text-white py-5" style={{ marginTop: "300px" }}>Easy Fast Reliable</h1></Col>
+        <Row className="justify-content-md-center bgStyle">
+          <Col>
+            <h1 className="text-white py-5">Welcome to "ZACK-COM"</h1>
+            <h2 className="text-white py-5 quoteStyle" style={{ wordSpacing: "10vw", marginTop: "300px" }}>Easy - Fast - Reliable</h2>
+          </Col>
         </Row>
         <Col className="my-5">
           <h2>Get your Shoes!</h2>
