@@ -1,4 +1,5 @@
-import { user } from '@fortawesome/free-regular-svg-icons';
+// import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import React, { Component } from 'react';
@@ -21,7 +22,8 @@ class App extends Component {
   state = {
     isLoading: true,
     isAuthenticated: false,
-    user: {}
+    user: {},
+    cart: JSON.parse(localStorage.getItem("cartKey")) || []
   };
 
   componentDidMount() {
@@ -30,7 +32,8 @@ class App extends Component {
 
   loadSectionForAuth = async () => {
     try {
-      const user = await Auth.currentSession();
+      await Auth.currentSession();
+      const user = await Auth.currentAuthenticatedUser();
       this.setState({ isAuthenticated: true, user });
     } catch (error) {
       if (error !== 'No current user') {
@@ -42,6 +45,12 @@ class App extends Component {
 
   setAuthenticated = () => {
     this.setState({ isAuthenticated: true });
+  }
+
+  addCart = props => {
+    const cart = this.state.cart;
+    cart.push(props);
+    localStorage.setItem("cartKey", JSON.stringify(cart));
   }
 
   handleSignOut = async () => {
@@ -56,9 +65,9 @@ class App extends Component {
   render() {
     console.log("User", this.state.user);
     console.log("Auth", this.state.isAuthenticated);
-    const isAuthenticated = this.state.isAuthenticated;
-    const setAuthenticated = this.setAuthenticated;
-    const unsetAuthenticated = this.unsetAuthenticated;
+    const { isAuthenticated, cart } = this.state;
+    const { setAuthenticated, addCart } = this;
+
     return (
       !this.state.isLoading &&
       <div className="App">
@@ -81,8 +90,8 @@ class App extends Component {
                 </Nav>) :
                 (<Nav className="ml-auto">
                   <Nav.Link>
-                    <FontAwesomeIcon icon={'people-carry'} /> User
-                </Nav.Link>
+                    <FontAwesomeIcon icon={faUser} />{" "}{this.state.user.username}
+                  </Nav.Link>
                   <Nav.Link eventKey={2} onClick={this.handleSignOut}>
                     Sign Out
                 </Nav.Link>
@@ -90,7 +99,7 @@ class App extends Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <UserProvider value={{ isAuthenticated, setAuthenticated, unsetAuthenticated }}>
+        <UserProvider value={{ isAuthenticated, cart, setAuthenticated, addCart }}>
           {/* <PageNav/> */}
           <Switch>
             <Route path="/" exact component={Home} />
@@ -100,7 +109,6 @@ class App extends Component {
             <AuthRoute path="/cart" exact><Cart /></AuthRoute>
           </Switch>
         </UserProvider>
-        <PageFooter />
       </div>
     )
   };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { API } from 'aws-amplify';
+import PageFooter from '../Components/PageFooter';
 
 class Home extends Component {
 
@@ -36,8 +37,8 @@ class Home extends Component {
             <h2 className="text-white py-5 quoteStyle" style={{ wordSpacing: "10vw", marginTop: "300px" }}>Easy - Fast - Reliable</h2>
           </Col>
         </Row>
-        <Col className="my-5">
-          <h2>Get your Shoes!</h2>
+        <Col className="my-5 ">
+          <h2 className="titleStyle">Get your Shoes!</h2>
         </Col>
         <Row className="justify-content-md-center">
           {this.state.productList.map(product => {
@@ -57,6 +58,7 @@ class Home extends Component {
             );
           })}
         </Row>
+        <PageFooter />
       </Container>
     );
   }

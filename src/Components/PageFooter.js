@@ -9,7 +9,7 @@ export default class PageFooter extends Component {
       //   <Navbar.Text>@All rights reserved.</Navbar.Text>
       //   </Nav>
       // </Navbar>
-      <div>
+      <div className={this.props.className}>
         ©2021 by Zack. All rights reserved.
       </div >
     );
