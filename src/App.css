@@ -106,3 +106,28 @@
   bottom: 0;
   width: 100vw;
 }
+
+.deleteButtonStyle {
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+}
+
+.deleteButtonStyle:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.deleteButtonStyle:active {
+  background-color: #5a5e66;
+}
+
+.incrementStyle {
+  outline: none !important;
+  border: none;
+  background-color: transparent;
+  opacity: 1;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
