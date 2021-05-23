@@ -28,9 +28,10 @@ export default class ProductDetail extends Component {
   };
 
   handleClick = () => {
-    const { addCart } = this.context;
+    const { addCart, setNotiCount } = this.context;
     const cartProduct = { title: this.state.product.title, price: this.state.product.price, sizeNo: this.state.product.sizeNo, quantity: this.state.quantity }
     addCart(cartProduct);
+    setNotiCount();
     this.props.history.goBack();
   };
 

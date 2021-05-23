@@ -2,7 +2,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Auth } from 'aws-amplify';
 import React, { Component } from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
+import { Badge, Nav, Navbar } from 'react-bootstrap';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import AuthRoute from './Components/AuthRoute';
@@ -22,12 +22,21 @@ class App extends Component {
     isLoading: true,
     isAuthenticated: false,
     user: {},
-    cart: JSON.parse(localStorage.getItem("cartKey")) || []
+    cart: JSON.parse(localStorage.getItem("cartKey")) || [],
+    notiCount: 0
   };
 
   componentDidMount() {
     this.loadSectionForAuth();
   }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.cart.length > prevState.cart.length) {
+  //     const notiCount = this.state.cart.length - prevState.cart.length;
+  //     this.setState({ notiCount });
+  //     console.log("cart", this.state.cart);
+  //   }
+  // }
 
   loadSectionForAuth = async () => {
     try {
@@ -61,11 +70,18 @@ class App extends Component {
     }
   }
 
+  setNotiCount = () => {
+    let notiCount = this.state.notiCount;
+    notiCount = ++notiCount;
+    this.setState({ notiCount });
+  };
+
   render() {
     console.log("User", this.state.user);
     console.log("Auth", this.state.isAuthenticated);
+    console.log("NotiCount", this.state.notiCount);
     const { isAuthenticated, cart } = this.state;
-    const { setAuthenticated, addCart } = this;
+    const { setAuthenticated, addCart, setNotiCount } = this;
 
     return (
       !this.state.isLoading &&
@@ -76,7 +92,7 @@ class App extends Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="mr-auto">
-                <Nav.Link href="/cart">Cart</Nav.Link>
+                <Nav.Link href="/cart">Cart {this.state.notiCount != 0 && <Badge pill variant="light">{this.state.notiCount}</Badge>}</Nav.Link>
               </Nav>
               {!isAuthenticated ?
                 (<Nav className="ml-auto">
@@ -98,7 +114,7 @@ class App extends Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <UserProvider value={{ isAuthenticated, cart, setAuthenticated, addCart }}>
+        <UserProvider value={{ isAuthenticated, cart, setAuthenticated, addCart, setNotiCount }}>
           {/* <PageNav/> */}
           <Switch>
             <Route path="/" exact component={Home} />

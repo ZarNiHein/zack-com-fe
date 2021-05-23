@@ -3,11 +3,12 @@ import { Card, Col, Container, Image, Row } from 'react-bootstrap';
 
 import { API } from 'aws-amplify';
 import PageFooter from '../Components/PageFooter';
+import UserContext from '../UserContext';
 
 class Home extends Component {
 
   state = {
-    productList: []
+    productList: [],
   };
 
   componentDidMount() {
