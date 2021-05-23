@@ -42,7 +42,7 @@ export default class ProductDetail extends Component {
   render() {
     return !this.state.isLoading && (
       <>
-        <Container className="pt-5">
+        <Container className="py-5">
           <Row>
             <Col className="mb-3" md="6">
               <Image src={this.state.product.imgUrl} fluid />

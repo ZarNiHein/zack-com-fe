@@ -14,8 +14,9 @@ export default class Cart extends Component {
   };
 
   componentDidMount() {
-    const { cart } = this.context;
+    const { cart, removeNotiCount } = this.context;
     this.setState({ cart });
+    removeNotiCount();
   }
 
   handleDelete = i => {
@@ -37,7 +38,7 @@ export default class Cart extends Component {
     return (
       <>
         <Container className="pt-5">
-          <Table hover bordered striped size="sm">
+          <Table hover bordered striped size="sm" responsive>
             <thead>
               <tr>
                 <th>No.</th>

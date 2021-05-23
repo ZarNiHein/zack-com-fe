@@ -23,7 +23,7 @@ class App extends Component {
     isAuthenticated: false,
     user: {},
     cart: JSON.parse(localStorage.getItem("cartKey")) || [],
-    notiCount: 0
+    notiCount: localStorage.getItem("notiCount") || 0
   };
 
   componentDidMount() {
@@ -73,15 +73,21 @@ class App extends Component {
   setNotiCount = () => {
     let notiCount = this.state.notiCount;
     notiCount = ++notiCount;
+    localStorage.setItem("notiCount", notiCount);
     this.setState({ notiCount });
   };
+
+  removeNotiCount = () => {
+    localStorage.removeItem("notiCount");
+    this.setState({ notiCount: 0 });
+  }
 
   render() {
     console.log("User", this.state.user);
     console.log("Auth", this.state.isAuthenticated);
     console.log("NotiCount", this.state.notiCount);
     const { isAuthenticated, cart } = this.state;
-    const { setAuthenticated, addCart, setNotiCount } = this;
+    const { setAuthenticated, addCart, setNotiCount, removeNotiCount } = this;
 
     return (
       !this.state.isLoading &&
@@ -114,7 +120,7 @@ class App extends Component {
             </Navbar.Collapse>
           </Navbar>
         </div>
-        <UserProvider value={{ isAuthenticated, cart, setAuthenticated, addCart, setNotiCount }}>
+        <UserProvider value={{ isAuthenticated, cart, setAuthenticated, addCart, setNotiCount, removeNotiCount }}>
           {/* <PageNav/> */}
           <Switch>
             <Route path="/" exact component={Home} />
